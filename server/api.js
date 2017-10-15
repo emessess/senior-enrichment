@@ -5,6 +5,7 @@ const db = require('../db/models');
 const Student = db.Student;
 const Campus = db.Campus;
 
+// GET ROUTES
 api.get('/students', (req, res, next) => Student.findAll()
   .then(students => res.json(students))
   .catch(next)
@@ -22,6 +23,21 @@ api.get('/campuses', (req, res, next) => Campus.findAll()
 
 api.get('/campuses/:id', (req, res, next) => Campus.findById(req.params.id)
   .then(campus => res.json(campus))
+  .catch(next)
+);
+
+//POST ROUTES
+api.post('/students', (req, res, next) => Student.create({
+  firstName: req.body.firstName,
+  lastName: req.body.lastName,
+  email: req.body.email
+})
+  .catch(next)
+);
+
+api.post('/campuses', (req, res, next) => Campus.create({
+  name: req.body.name,
+})
   .catch(next)
 );
 
