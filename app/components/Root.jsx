@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+
+import Nav from './Nav';
 
 const Root = () => {
   return (
     <div>
-      <h2>Space School {Math.random()}</h2>
+      <Nav />
+      <main>
+        <Switch>
+          {/* <Route path="/new-channel" component={NewChannelEntry} />
+          <Route path="/channels/:channelId" component={MessagesList} />
+          <Redirect to="/channels/1" /> */}
+        </Switch>
+      </main>
     </div>
   );
 }
