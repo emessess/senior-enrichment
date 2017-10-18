@@ -9,8 +9,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 render (
   <Provider store={store}>
-  <Router>
-    <Root/>
+    <Router>
+      <Root/>
     </Router>
   </Provider>,
   document.getElementById('main')

@@ -8,6 +8,7 @@ import StudentDetail from './Students/StudentDetail';
 import AddStudent from './Students/AddStudent';
 import CampusList from './Campus/CampusList';
 import CampusDetail from './Campus/CampusDetail';
+import Home from './Home';
 
 const Root = () => {
   return (
@@ -15,8 +16,9 @@ const Root = () => {
       <Nav />
       <main>
         <Switch>
-          <Route path="/campuses" component={CampusList} />
-          <Route path="/students" component={StudentList} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/campuses" component={CampusList} />
+          <Route exact path="/students" component={StudentList} />
         </Switch>
       </main>
     </div>

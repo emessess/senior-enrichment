@@ -27,7 +27,7 @@ export default class StudentList extends Component {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>StudentID</th>
               <th>Name</th>
               <th>Campus</th>
             </tr>
