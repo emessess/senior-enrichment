@@ -5,12 +5,9 @@ const Campus = db.define('campus', {
   name: {
     type: Sequelize.STRING,
   },
-  imgURL: {
-    type: Sequelize.VIRTUAL,
-    get: function () {
-      //TODO: FIX THIS ROUTE WHEN YOU HAVE IT
-      return 'api/INSERTROUTETOGETIT';
-    }
+  image: {
+    type: Sequelize.STRING,
+    defaultValue: 'default.jpg'
   }
 });
 

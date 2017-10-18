@@ -6,15 +6,18 @@ const Sequelize = require('sequelize');
 const Student = db.define('student', {
   firstName: {
     type: Sequelize.STRING,
-    // allowNull: false
+    allowNull: false
   },
   lastName: {
     type: Sequelize.STRING,
-    // allowNull: false
+    allowNull: false
+  },
+  construct: {
+    type: Sequelize.ENUM('AI', 'Mech', 'Flesher')
   },
   email: {
     type: Sequelize.STRING,
-    // allowNull: false,
+    allowNull: false,
     validate: {
       isEmail: true}
   }

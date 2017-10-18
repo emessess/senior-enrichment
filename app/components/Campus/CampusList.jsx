@@ -21,7 +21,7 @@ export default class CampusList extends Component {
     return (
       <div>
         {
-          this.state.campuses.map(campus => <SingleCampus name={campus.name} key={campus.id} />)
+          this.state.campuses.map(campus => <SingleCampus name={campus.name} image={campus.image} key={campus.id} />)
         }
       </div>
     )

@@ -8,6 +8,7 @@ import StudentDetail from './Students/StudentDetail';
 import AddStudent from './Students/AddStudent';
 import CampusList from './Campus/CampusList';
 import CampusDetail from './Campus/CampusDetail';
+import SingleStudent from './Students/SingleStudent';
 import Home from './Home';
 
 const Root = () => {
