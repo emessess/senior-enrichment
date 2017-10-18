@@ -47,7 +47,7 @@ api.post('/campuses', (req, res, next) => Campus.create({
 //PUT ROUTES 
 api.put('/students/:id', (req, res, next) => Student.findById(req.params.id)
   .then(student => {
-    return student.update(req.body)
+    return student.update(req.body);
   })
   .then(updatedStudent => res.json({student: updatedStudent, message: 'Student updated.'}))
   .catch(next)
@@ -55,7 +55,7 @@ api.put('/students/:id', (req, res, next) => Student.findById(req.params.id)
 
 api.put('/campuses/:id', (req, res, next) => Campus.findById(req.params.id)
   .then(campus => {
-    return campus.update(req.body)
+    return campus.update(req.body);
   })
   .then(updatedCampus => res.json({student: updatedCampus, message: 'Campus updated.'}))
   .catch(next)

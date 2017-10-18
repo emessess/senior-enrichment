@@ -6,10 +6,17 @@ const fakeNames = ['Mike Jones', 'Dweeb Johnson', 'Tina Fey', 'Tracey Morqan'];
 const StudentList = () => {
   return (
     <div>
-      <p>Student List</p>
-      {
-        fakeNames.map((studentName, idx) => <SingleStudent key={idx} name={studentName}/>)
-      }
+      <p>student list</p>
+      <table> 
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Campus</th>
+        </tr>
+        {
+          fakeNames.map((studentName, idx) => <SingleStudent key={idx} id={Math.floor(Math.random() * 10)} name={studentName} campus='Mars'/>)
+        }
+      </table>
     </div>
   );
 };

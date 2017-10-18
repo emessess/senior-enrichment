@@ -1,3 +1,62 @@
 div {
   outline: #000 solid thin;
 }
+
+nav {
+    /* position: fixed; */
+    height: 50px;
+    width: 100%;
+    z-index: 1;
+    border-bottom: 1px solid gray;
+    display: flex;
+  }
+
+  /* main {
+    background-color: #EEE;
+    height: 500px;
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+  } */
+  
+  /* .rightnav {
+    display: flex;
+    justify-content: flex-end;
+  } */
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+  
+h2 {
+  margin-right: 2em;
+}
+
+h3 {
+  font-size: 16px;
+  padding: .25em;
+}
+
+p {
+  font-size: 8px;
+  font-style: italic;
+}
+
+#mainbox {
+  background-color: blue;
+  height: 500px;
+  width: 50%;
+  margin: auto;
+  display: flex;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}

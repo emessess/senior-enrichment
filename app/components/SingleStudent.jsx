@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const SingleStudent = (props) => {
   return (
-    <div>
-      <p>Single Student</p>
-      <h3>{props.name}</h3>
-    </div>
+    <tr>
+      <td>{props.id}</td>
+      <td>{props.name}</td>
+      <td>{props.campus}</td>
+    </tr>
   );
 };
 
