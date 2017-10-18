@@ -34,6 +34,7 @@ api.post('/students', (req, res, next) => Student.create({
   lastName: req.body.lastName,
   email: req.body.email
 })
+  .then(createdStudent => res.json(createdStudent))
   .catch(next)
 );
 
@@ -42,7 +43,6 @@ api.post('/campuses', (req, res, next) => Campus.create({
 })
   .catch(next)
 );
-
 
 //PUT ROUTES 
 api.put('/students/:id', (req, res, next) => Student.findById(req.params.id)
