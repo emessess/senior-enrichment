@@ -6,7 +6,6 @@ const fakeNames = ['Mike Jones', 'Dweeb Johnson', 'Tina Fey', 'Tracey Morqan'];
 const StudentList = () => {
   return (
     <div>
-      <p>student list</p>
       <thead>
         <tr>
           <th>ID</th>
