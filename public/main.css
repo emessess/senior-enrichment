@@ -51,6 +51,10 @@ p {
   font-style: italic;
 }
 
+.container {
+  display: flex;
+}
+
 #mainbox {
   background-color: blue;
   height: 500px;
