@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Nav from './Nav';
-import StudentList from './StudentList';
-import EditStudent from './EditStudent';
-import StudentDetail from './StudentDetail';
-import AddStudent from './AddStudent';
+import StudentList from './Students/StudentList';
+import EditStudent from './Students/EditStudent';
+import StudentDetail from './Students/StudentDetail';
+import AddStudent from './Students/AddStudent';
 
 const Root = () => {
   return (

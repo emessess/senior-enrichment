@@ -7,16 +7,18 @@ const StudentList = () => {
   return (
     <div>
       <p>student list</p>
-      <table> 
+      <thead>
         <tr>
           <th>ID</th>
           <th>Name</th>
           <th>Campus</th>
         </tr>
+      </thead>
+      <tbody>
         {
           fakeNames.map((studentName, idx) => <SingleStudent key={idx} id={Math.floor(Math.random() * 10)} name={studentName} campus='Mars'/>)
         }
-      </table>
+      </tbody>
     </div>
   );
 };
