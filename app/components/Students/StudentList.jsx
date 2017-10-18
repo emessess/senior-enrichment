@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import SingleStudent from './SingleStudent';
 
 const fakeNames = ['Mike Jones', 'Dweeb Johnson', 'Tina Fey', 'Tracey Morqan'];
 
-const StudentList = () => {
+const StudentList = (props) => {
+  console.log(props);
+  const students = props.students;
+  console.log(students);
   return (
     <div>
       <thead>
@@ -15,12 +19,14 @@ const StudentList = () => {
       </thead>
       <tbody>
         {
-          fakeNames.map((studentName, idx) => <SingleStudent key={idx} id={Math.floor(Math.random() * 10)} name={studentName} campus='Mars'/>)
+          students.map((student) => <SingleStudent key={student.id} id={student.id} name={student.fullName} campus={student.campusId} />)
         }
       </tbody>
     </div>
   );
 };
 
-export default StudentList;
+const mapStateToProps = (state) => ({students: state.students});
+
+export default connect(mapStateToProps)(StudentList);
 
