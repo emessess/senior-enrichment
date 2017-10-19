@@ -11,7 +11,8 @@ export default class StudentDetail extends Component {
       campus: {},
       firstNameInput: '',
       lastNameInput: '',
-      emailInput: ''
+      emailInput: '',
+      campusInput: 0
     };
 
     this.pressDelete = this.pressDelete.bind(this);
@@ -41,7 +42,8 @@ export default class StudentDetail extends Component {
     const updateStudent = {
       firstName: this.state.firstNameInput,
       lastName: this.state.lastNameInput,
-      email: this.state.emailInput
+      email: this.state.emailInput,
+      campusId: 3
     };
 
     axios.put(`/api/students/${this.state.selectedStudent.id}`, updateStudent)
@@ -59,6 +61,8 @@ export default class StudentDetail extends Component {
   handleChange(event) {
     let target = event.target;
     let name = target.name;
+    console.log(target.value);
+    console.log(target.name);
 
     this.setState({
       [name]: target.value
@@ -80,12 +84,17 @@ export default class StudentDetail extends Component {
         <h4><NavLink to={`/campuses/${student.campusId}`}>{campus.name}</NavLink></h4>
         <button onClick={this.pressDelete}>Delete</button>
         <div>
-          <p>EditStudent</p>
           <h3>Enter info to update:</h3>
           <form onSubmit={this.submitUpdate}>
             <input onChange={this.handleChange} value={this.state.firstNameInput} type="text" name="firstNameInput" placeholder="Enter first name..." /><br />
             <input onChange={this.handleChange} value={this.state.lastNameInput} type="text" name="lastNameInput" placeholder="Enter last name..." /><br />
             <input onChange={this.handleChange} value={this.state.emailInput} type="text" name="emailInput" placeholder="Enter email..." /><br />
+            <select name="campusInput" onChange={this.handleChange}>
+              <option value="1">Mars</option>
+              <option value="2">Luna</option>
+              <option value="3">Terra</option>
+              <option value="4">Titan</option>
+            </select>
             <input type="submit" value="Submit" /><br />
           </form>
         </div>

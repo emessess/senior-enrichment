@@ -43,25 +43,28 @@ export default class CampusList extends Component {
 
   render() {
     return (
-      <div className="container">
-        {
-          this.state.campuses.map(campus => {
-            return (
-              <div className="campus_container" key={campus.id}>
-                <NavLink to={`/campuses/${campus.id}`}>
-                  <div className="imgcontainer">
-                    <img src={campus.image} />
-                  </div>
-                  <h3>{campus.name}</h3>
-                </NavLink>
-              </div>
-            );
-          })
-        }
-        <form onSubmit={this.addCampus}>
-          <input onChange={this.handleChange} value={this.state.newNameInput} type="text" name="newNameInput" placeholder="Enter new campus name..." /><br />
+      <div>
+        <h4>Enter a new campus name:</h4>
+        <form className="addForm" onSubmit={this.addCampus}>
+          <input onChange={this.handleChange} value={this.state.newNameInput} type="text" name="newNameInput" placeholder="New campus name..." />
           <input type="submit" value="Submit" /><br />
         </form>
+        <div className="container">
+          {
+            this.state.campuses.map(campus => {
+              return (
+                <div className="campus_container" key={campus.id}>
+                  <NavLink to={`/campuses/${campus.id}`}>
+                    <div className="imgcontainer">
+                      <img src={`/${campus.image}`}/>
+                    </div>
+                    <h3>{campus.name}</h3>
+                  </NavLink>
+                </div>
+              );
+            })
+          }
+        </div>
       </div>
     );
   }

@@ -51,7 +51,8 @@ api.get('/campuses/:id/students', (req, res, next) => Campus.findById(req.params
 api.post('/students', (req, res, next) => Student.create({
   firstName: req.body.firstName,
   lastName: req.body.lastName,
-  email: req.body.email
+  email: req.body.email,
+  campusId: req.body.campusId
 })
   .then(createdStudent => res.json(createdStudent))
   .catch(next)

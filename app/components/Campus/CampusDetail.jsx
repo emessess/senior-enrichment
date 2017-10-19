@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 export default class CampusDetail extends Component  {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       selectedCampus: {},
@@ -28,7 +28,13 @@ export default class CampusDetail extends Component  {
   pressDelete() {
     const campusId = this.props.match.params.campusId;
     axios.delete(`/api/campuses/${campusId}`)
-      .then(this.props.history.push('/'));
+      .then((stuff) => {
+        console.log(stuff);
+        this.state.campusStudents.forEach(student => {
+          axios.delete(`api/students/${student.id}`);
+        });
+        this.props.history.push('/');
+      });
   }
 
   render() {

@@ -44,6 +44,11 @@ h3 {
   padding: .25em;
 }
 
+h4 {
+  margin-top: 2em;
+  padding: .25em;
+}
+
 p {
   font-size: 8px;
   font-style: italic;
@@ -52,6 +57,7 @@ p {
 .container {
   display: flex;
   margin: 1em;
+  flex-wrap: wrap;
 }
 
 .campus_container {
@@ -69,6 +75,12 @@ p {
 .imgcontainer img {
   width: 100%;
   height: auto;
+}
+
+.addForm {
+  margin-bottom: 2em;
+  margin-top: 1 em;
+
 }
 
 #mainbox {
