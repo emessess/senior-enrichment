@@ -7,7 +7,7 @@ export default class CampusList extends Component {
     super();
 
     this.state = {
-      campuses: []
+      campuses: [],
     };
   }
 
@@ -15,13 +15,23 @@ export default class CampusList extends Component {
     axios.get('api/campuses')
       .then(res => res.data)
       .then(fetchedCampuses => this.setState({campuses: fetchedCampuses}));
+
   }
 
   render() {
     return (
-      <div>
+      <div className="container">
         {
-          this.state.campuses.map(campus => <SingleCampus name={campus.name} image={campus.image} key={campus.id} />)
+          this.state.campuses.map(campus => {
+            return (
+              <div className="campus_container" key={campus.id}>
+                <div className="imgcontainer">
+                  <img src={campus.image} />
+                </div>
+                <h3>{campus.name}</h3>
+              </div>
+            );
+          })
         }
       </div>
     );

@@ -27,6 +27,17 @@ api.get('/campuses/:id', (req, res, next) => Campus.findById(req.params.id)
   .catch(next)
 );
 
+api.get('/campuses/:id/students', (req, res, next) => Campus.findById(req.params.id)
+  .then(campus => {
+    let students = campus.getStudents();
+    console.log(students);
+    return students;
+  }
+  )
+  .then(students => res.json(students))
+  .catch(next)
+);
+
 
 //POST ROUTES
 api.post('/students', (req, res, next) => Student.create({

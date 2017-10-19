@@ -50,6 +50,24 @@ p {
 
 .container {
   display: flex;
+  margin: 1em;
+}
+
+.campus_container {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.imgcontainer {
+  width: 200px;
+  height: 200px;
+}
+
+/* resize images */
+.imgcontainer img {
+  width: 100%;
+  height: auto;
 }
 
 #mainbox {

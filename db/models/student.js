@@ -25,6 +25,9 @@ const Student = db.define('student', {
   getterMethods: {
     fullName: function () {
       return `${this.firstName} ${this.lastName}`;
+    },
+    campusName: function () {
+      return this.getCampus();
     }
   }
 });

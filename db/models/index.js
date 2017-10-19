@@ -10,6 +10,7 @@ const Student = require('./student');
 const Campus = require('./campus');
 
 Student.belongsTo(Campus);
+Campus.hasMany(Student, { as: 'students'});
 
 module.exports = {
   Student,

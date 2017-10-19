@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SingleStudent from './SingleStudent';
 import axios from 'axios';
 
 const fakeNames = ['Mike Jones', 'Dweeb Johnson', 'Tina Fey', 'Tracey Morqan'];
@@ -34,8 +33,15 @@ export default class StudentList extends Component {
           </thead>
           <tbody>
             {
-              this.state.students.map((student) => <SingleStudent key={student.id} id={student.id} name={student.fullName} campus={student.campusId} />)
+              this.state.students.map((student) => {
+                return (<tr key={student.id}>
+                  <td>{student.id}</td>
+                  <td>{student.fullName}</td>
+                  <td>{student.campusName}</td>
+                </tr>);
+              })
             }
+
           </tbody>
         </table>
       </div>
