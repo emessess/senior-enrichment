@@ -24,21 +24,24 @@ export default class CampusDetail extends Component  {
   }
 
   render() {
+    console.log(this.state.selectedCampus);
     return (
-      <div>
-        <h3>{this.state.selectedCampus.name}</h3>
-        <div className="imgcontainer">
-          <img src="default.jpg" />
+      <div className="container">
+        <div className="campus_container">
+          <h3>{this.state.selectedCampus.name}</h3>
+          <div className="imgcontainer">
+            <img src={`/${this.state.selectedCampus.image}`} />
+          </div>
+          <label>Students currently at {this.state.selectedCampus.name}:
+            <ul>
+              {
+                this.state.campusStudents && this.state.campusStudents.map(student => {
+                  return <li key={student.id}> <NavLink to={`/students/${student.id}`}>{student.fullName} {`(${student.construct})`}</NavLink></li>;
+                })
+              }
+            </ul>
+          </label>
         </div>
-        <label>Students currently at {this.state.selectedCampus.name}:
-          <ul>
-            {
-              this.state.campusStudents && this.state.campusStudents.map(student => {
-                return <li key={student.id}> <NavLink to={`/students/${student.id}`}>{student.fullName} {`(${student.construct})`}</NavLink></li>;
-              })
-            }
-          </ul>
-        </label>
       </div>
     );
   }

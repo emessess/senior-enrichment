@@ -7,14 +7,21 @@ export default class StudentDetail extends Component {
     super(props);
 
     this.state = {
-      selectedStudent: {}
+      selectedStudent: {
+        campus: {}
+      },
+      firstNameInput: '',
+      lastNameInput: '',
+      emailInput: ''
     };
+
+    this.pressDelete = this.pressDelete.bind(this);
+    this.submitUpdate = this.submitUpdate.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    console.log(this.props.match.params)
     const studentId = this.props.match.params.studentId;
-    console.log(studentId);
 
     axios.get(`/api/students/${studentId}`)
       .then(res => res.data)
@@ -23,19 +30,48 @@ export default class StudentDetail extends Component {
       }));
   }
 
-  render() {
+  pressDelete(event) {
+    const deleteStudentId = this.props.match.params.studentId;
+    axios.delete(`/api/students/${deleteStudentId}`)
+      .then(this.props.history.push('/students'));
+  }
 
+  submitUpdate(event) {
+    event.preventDefault();
+    console.log('soething happened!', event);
+  }
+
+  handleChange(event) {
+    let target = event.target;
+    let name = target.name;
+
+    this.setState({
+      [name]: target.value
+    });
+  }
+
+  render() {
+    
     const student = this.state.selectedStudent;
     const campus = this.state.selectedStudent.campus;
-    console.log('meeeeee', campus);
     return (
       <div>
         <h3>{student.fullName}</h3>
         <h4>{student.email}</h4>
         <h4>{student.construct}</h4>
-        <h4><NavLink to={`/campuses/${student.campusId}`}>{student.lastName}</NavLink></h4>
-        <button>Edit</button>
-        <button>Delete</button>
+        {console.log(campus)}
+        <h4><NavLink to={`/campuses/${student.campusId}`}>{campus.name}</NavLink></h4>
+        <button onClick={this.pressDelete}>Delete</button>
+        <div>
+          <p>EditStudent</p>
+          <h3>Enter info to update:</h3>
+          <form onSubmit={this.submitUpdate}>
+            <input onChange={this.handleChange} value={this.state.firstNameInput} type="text" name="firstNameInput" placeholder="Enter first name..." /><br />
+            <input onChange={this.handleChange} value={this.state.lastNameInput} type="text" name="lastNameInput" placeholder="Enter last name..." /><br />
+            <input onChange={this.handleChange} value={this.state.emailInput} type="text" name="emailInput" placeholder="Enter email..." /><br />
+            <input type="submit" value="Submit" /><br />
+          </form>
+        </div>
       </div>);
   }
 }
