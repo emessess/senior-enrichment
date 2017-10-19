@@ -5,7 +5,7 @@ const SingleStudent = (props) => {
     <tr>
       <td>{props.id}</td>
       <td>{props.name}</td>
-      <td>{props.campus}</td>
+      <td>{props.campusId}</td>
     </tr>
   );
 };

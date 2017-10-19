@@ -24,7 +24,7 @@ export default class CampusList extends Component {
           this.state.campuses.map(campus => <SingleCampus name={campus.name} image={campus.image} key={campus.id} />)
         }
       </div>
-    )
+    );
   }
 
 }
