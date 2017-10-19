@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 export default class StudentDetail extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ export default class StudentDetail extends Component {
         <h3>{student.fullName}</h3>
         <h4>{student.email}</h4>
         <h4>{student.construct}</h4>
+        <h4><NavLink to={`/campuses/${student.campusId}`}>{student.lastName}</NavLink></h4>
         <button>Edit</button>
         <button>Delete</button>
       </div>);

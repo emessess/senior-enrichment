@@ -34,8 +34,8 @@ export default class StudentList extends Component {
               this.state.students.map((student) => {
                 return (<tr key={student.id}>
                   <td>{student.id}</td>
-                  <td><NavLink to={`students/${student.id}`}>{student.fullName}</NavLink></td>
-                  <td><NavLink to={`campuses/${student.campus.id}`}>{student.campus.name}</NavLink></td>
+                  <td><NavLink to={`/students/${student.id}`}>{student.fullName}</NavLink></td>
+                  <td><NavLink to={`/campuses/${student.campus.id}`}>{student.campus.name}</NavLink></td>
                 </tr>);
               })
             }

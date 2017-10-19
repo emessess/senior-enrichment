@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 export default class CampusDetail extends Component  {
@@ -26,12 +27,14 @@ export default class CampusDetail extends Component  {
     return (
       <div>
         <h3>{this.state.selectedCampus.name}</h3>
-        <img src={this.state.selectedCampus.image} />
+        <div className="imgcontainer">
+          <img src="default.jpg" />
+        </div>
         <label>Students currently at {this.state.selectedCampus.name}:
           <ul>
             {
               this.state.campusStudents && this.state.campusStudents.map(student => {
-                return <li key={student.id}>{student.fullName}</li>;
+                return <li key={student.id}> <NavLink to={`/students/${student.id}`}>{student.fullName} {`(${student.construct})`}</NavLink></li>;
               })
             }
           </ul>
@@ -41,4 +44,3 @@ export default class CampusDetail extends Component  {
   }
 
 }
-
