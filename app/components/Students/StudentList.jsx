@@ -37,7 +37,7 @@ export default class StudentList extends Component {
                 return (<tr key={student.id}>
                   <td>{student.id}</td>
                   <td>{student.fullName}</td>
-                  <td>{student.campusName}</td>
+                  <td>{student.campus.name}</td>
                 </tr>);
               })
             }
