@@ -10,10 +10,12 @@ export default class CampusDetail extends Component  {
       selectedCampus: {},
       campusStudents: []
     };
+    this.pressDelete = this.pressDelete.bind(this);
   }
 
   componentDidMount() {
     const campusId = this.props.match.params.campusId;
+
     axios.get(`/api/campuses/${campusId}`)
       .then(res => res.data)
       .then(campus => this.setState({ selectedCampus: campus }));
@@ -21,6 +23,12 @@ export default class CampusDetail extends Component  {
     axios.get(`/api/campuses/${campusId}/students`)
       .then(res => res.data)
       .then(students => this.setState({ campusStudents: students }));
+  }
+
+  pressDelete() {
+    const campusId = this.props.match.params.campusId;
+    axios.delete(`/api/campuses/${campusId}`)
+      .then(this.props.history.push('/'));
   }
 
   render() {
@@ -40,6 +48,7 @@ export default class CampusDetail extends Component  {
                 })
               }
             </ul>
+            <button onClick={this.pressDelete}>Delete</button>
           </label>
         </div>
       </div>

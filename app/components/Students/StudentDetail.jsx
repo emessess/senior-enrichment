@@ -7,9 +7,8 @@ export default class StudentDetail extends Component {
     super(props);
 
     this.state = {
-      selectedStudent: {
-        campus: {}
-      },
+      selectedStudent: {},
+      campus: {},
       firstNameInput: '',
       lastNameInput: '',
       emailInput: ''
@@ -22,11 +21,11 @@ export default class StudentDetail extends Component {
 
   componentDidMount() {
     const studentId = this.props.match.params.studentId;
-
     axios.get(`/api/students/${studentId}`)
       .then(res => res.data)
       .then(student => this.setState({
-        selectedStudent: student
+        selectedStudent: student,
+        campus: student.campus
       }));
   }
 
@@ -39,6 +38,22 @@ export default class StudentDetail extends Component {
   submitUpdate(event) {
     event.preventDefault();
     console.log('soething happened!', event);
+    const updateStudent = {
+      firstName: this.state.firstNameInput,
+      lastName: this.state.lastNameInput,
+      email: this.state.emailInput
+    };
+
+    axios.put(`/api/students/${this.state.selectedStudent.id}`, updateStudent)
+      .then(res => res.data)
+      .then(updatedStudent => {
+        console.log('COMING BACK FROM PUT', updatedStudent);
+        this.setState({
+          selectedStudent: updatedStudent.student,
+          campus: updatedStudent.campus
+        });
+      })
+      .then(() => this.props.history.push('/students'));
   }
 
   handleChange(event) {
@@ -53,7 +68,9 @@ export default class StudentDetail extends Component {
   render() {
     
     const student = this.state.selectedStudent;
-    const campus = this.state.selectedStudent.campus;
+    console.log('selected student', student);
+    const campus = this.state.campus;
+    console.log('campus', campus);
     return (
       <div>
         <h3>{student.fullName}</h3>
