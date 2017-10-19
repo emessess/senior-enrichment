@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-
-const fakeNames = ['Mike Jones', 'Dweeb Johnson', 'Tina Fey', 'Tracey Morqan'];
 
 export default class StudentList extends Component {
   constructor() {
@@ -15,7 +13,7 @@ export default class StudentList extends Component {
   }
 
   componentDidMount() {
-    axios.get('api/students')
+    axios.get('/api/students')
       .then(res => res.data)
       .then(fetchedStudents => this.setState({students: fetchedStudents}));
   }
@@ -36,8 +34,8 @@ export default class StudentList extends Component {
               this.state.students.map((student) => {
                 return (<tr key={student.id}>
                   <td>{student.id}</td>
-                  <td>{student.fullName}</td>
-                  <td>{student.campus.name}</td>
+                  <td><NavLink to={`students/${student.id}`}>{student.fullName}</NavLink></td>
+                  <td><NavLink to={`campuses/${student.campus.id}`}>{student.campus.name}</NavLink></td>
                 </tr>);
               })
             }

@@ -16,7 +16,11 @@ api.get('/students', (req, res, next) => Student.findAll({
   .catch(next)
 );
 
-api.get('/students/:id', (req, res, next) => Student.findById(req.params.id)
+api.get('/students/:id', (req, res, next) => Student.findById(req.params.id, {
+  include: [{
+    model: Campus
+  }]
+})
   .then(student => res.json(student))
   .catch(next)
 );
@@ -34,11 +38,11 @@ api.get('/campuses/:id', (req, res, next) => Campus.findById(req.params.id)
 api.get('/campuses/:id/students', (req, res, next) => Campus.findById(req.params.id)
   .then(campus => {
     let students = campus.getStudents();
-    console.log(students);
     return students;
-  }
-  )
-  .then(students => res.json(students))
+  })
+  .then(students => {
+    res.json(students);
+  })
   .catch(next)
 );
 

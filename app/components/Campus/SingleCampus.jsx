@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-const SingleCampus = (props) => {
-  console.log(props.id);
-  return (
-    <div>
-      <h3>{props.name}</h3>
-      <img src={props.image} />
-    </div>
-  );
-};
+export default class SingleCampus extends Component  {
+  constructor() {
+    super();
 
-export default SingleCampus;
+    this.state = {
+      selectedCampus: {},
+      campusStudents: []
+    };
+  }
+
+  componentDidMount() {
+    
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>{this.state.selectedCampus.name}</h3>
+        <img src={props.image} />
+      </div>
+    );
+  }
+
+}
