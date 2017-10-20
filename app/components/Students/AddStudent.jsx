@@ -1,42 +1,43 @@
 import React, { Component } from 'react';
 
 export default class AddStudent extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      firstNameInput: '',
-      lastNameInput: '',
+      firstName: '',
+      lastName: '',
       email: '',
-      selectedCampus: ''
+      campusId: 1
     };
 
-    this.handleInput = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.submitStudent = this.submitStudent.bind(this);
   }
 
-  handleInput(event) {
-    let field = event.target.name;
-    let value = event.target.value;
-    this.setState({field: value});
-    console.log(this.state);
+  handleChange(event) {
+    console.log(this.props);
+    let target = event.target;
+    let name = target.name;
+
+    this.setState({
+      [name]: target.value
+    });
   }
+
+  submitStudent (event) {
+    event.preventDefault();
+    this.props.addStudent(this.state);
+  }
+
 
   render() {
     return (
       <div>
-        <p>AddStudent</p>
-        <h3>Enter student's info to register:</h3>
-        <form>
-          <input onChange={this.handleInput} type="text" name="firstNameInput" value={this.state.firstNameInput} placeholder="Enter first name..." /><br />
-          <input type="text" name="lastNameInput" value={this.state.lastNameInput} placeholder="Enter last name..." /><br />
-          <input type="text" name="email" value={this.state.emailInput} placeholder="Enter email..." /><br /><br />
-          <label> Choose Your Campus:<br />
-            <select>
-              <option value="Mars">Mars</option>
-              <option value="Titan">Titan</option>
-              <option value="Luna">Luna</option>
-              <option value="Terra">Terra</option>
-            </select>
-          </label><br /><br />
+        <h4>Add info to register a student:</h4>
+        <form className="addForm" onSubmit={this.submitStudent}>
+          <input onChange={this.handleChange} value={this.state.firstNameInput} type="text" name="firstName" placeholder="Enter first name..." />
+          <input onChange={this.handleChange} value={this.state.lastNameInput} type="text" name="lastName" placeholder="Enter last name..." />
+          <input onChange={this.handleChange} value={this.state.emailInput} type="text" name="email" placeholder="Enter email..." />
           <input type="submit" value="Submit" /><br />
         </form>
       </div>

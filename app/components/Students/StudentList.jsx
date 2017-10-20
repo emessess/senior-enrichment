@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import AddStudent from './AddStudent';
 
 export default class StudentList extends Component {
   constructor(props) {
@@ -8,39 +9,21 @@ export default class StudentList extends Component {
 
     this.state = {
       students: [],
-      firstNameInput: '',
-      lastNameInput: '',
-      emailInput: '',
-      campus: null
     };
 
-    this.submitUpdate = this.submitUpdate.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.addStudent = this.addStudent.bind(this);
 
   }
 
-  submitUpdate(event) {
-    event.preventDefault();
-
-    const newStudent = {
-      firstName: this.state.firstNameInput,
-      lastName: this.state.lastNameInput,
-      email: this.state.emailInput,
-      campusId: 1
-    };
-
-    axios.post('/api/students/', newStudent)
+  addStudent(student) {
+    axios.post('/api/students/', student)
       .then(res => res.data)
       .then(createdStudent => {
         const currentStudents = this.state.students;
         this.setState({
-          // students: currentStudents.concat(createdStudent),
-          firstNameInput: '',
-          lastNameInput: '',
-          emailInput: '',
+          students: currentStudents.concat(createdStudent),
         });
-      })
-      .then(() => this.props.history.push('/students'));
+      });
   }
 
   componentDidMount() {
@@ -49,26 +32,12 @@ export default class StudentList extends Component {
       .then(fetchedStudents => this.setState({students: fetchedStudents}));
   }
 
-  handleChange(event) {
-    let target = event.target;
-    let name = target.name;
-
-    this.setState({
-      [name]: target.value
-    });
-  }
 
   render () {
     console.log(this.state.students);
     return (
       <div>
-        <h4>Add info to register a student:</h4>
-        <form className="addForm" onSubmit={this.submitUpdate}>
-          <input onChange={this.handleChange} value={this.state.firstNameInput} type="text" name="firstNameInput" placeholder="Enter first name..." />
-          <input onChange={this.handleChange} value={this.state.lastNameInput} type="text" name="lastNameInput" placeholder="Enter last name..." />
-          <input onChange={this.handleChange} value={this.state.emailInput} type="text" name="emailInput" placeholder="Enter email..." />
-          <input type="submit" value="Submit" /><br />
-        </form>
+        <AddStudent students={this.state.students} addStudent={this.addStudent} /> 
         <table>
           <thead>
             <tr>
@@ -83,7 +52,6 @@ export default class StudentList extends Component {
                 return (<tr key={student.id}>
                   <td>{student.id}</td>
                   <td><NavLink to={`/students/${student.id}`}>{student.fullName}</NavLink></td>
-                  <td><NavLink to={`/campuses/${student.campus.id}`}>{student.campus.name}</NavLink></td>
                 </tr>);
               })
             }

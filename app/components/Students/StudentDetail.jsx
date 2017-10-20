@@ -33,12 +33,13 @@ export default class StudentDetail extends Component {
   pressDelete(event) {
     const deleteStudentId = this.props.match.params.studentId;
     axios.delete(`/api/students/${deleteStudentId}`)
-      .then(this.props.history.push('/students'));
+      .then(this.setState.selectedStudent({}));
   }
 
   submitUpdate(event) {
     event.preventDefault();
     console.log('soething happened!', event);
+
     const updateStudent = {
       firstName: this.state.firstNameInput,
       lastName: this.state.lastNameInput,
