@@ -23,12 +23,10 @@ const initializeCampuses = () => {
 };
 
 const createStudent = () => {
-  const enumChoices = ['AI', 'Mech', 'Flesher'];
 
   return {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    construct: enumChoices[getRandomInt(0, 3)],
     email: faker.internet.email(),
     campusId: getRandomInt(1, 5)
   };
@@ -37,7 +35,7 @@ const createStudent = () => {
 
 let students = [];
 
-for (let i = 0; i < 25; i++) {
+for (let i = 0; i < 12; i++) {
   students.push(createStudent());
 }
 

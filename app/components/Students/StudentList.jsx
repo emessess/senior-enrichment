@@ -43,7 +43,6 @@ export default class StudentList extends Component {
             <tr>
               <th>StudentID</th>
               <th>Name</th>
-              <th>Campus</th>
             </tr>
           </thead>
           <tbody>

@@ -32,7 +32,7 @@ export default class CampusList extends Component {
         campuses: this.state.campuses.concat(newCampus),
         newNameInput: ''
       }))
-      .then(this.props.history.push('/campuses/'));
+      // .then(this.props.history.push('/campuses/'));
   }
 
   handleChange(event) {
