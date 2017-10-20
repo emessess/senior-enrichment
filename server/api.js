@@ -2,6 +2,7 @@
 
 const api = require('express').Router();
 const db = require('../db/models');
+const Promise = require('bluebird');
 const Student = db.Student;
 const Campus = db.Campus;
 
@@ -53,7 +54,7 @@ api.post('/students', (req, res, next) => Student.create({
   lastName: req.body.lastName,
   email: req.body.email,
   campusId: req.body.campusId
-})
+}, {include: [{model: Campus}]})
   .then(createdStudent => res.json(createdStudent))
   .catch(next)
 );
@@ -93,7 +94,12 @@ api.delete('/students/:id', (req, res, next) => Student.findById(req.params.id)
 
 api.delete('/campuses/:id', (req, res, next) => Campus.findById(req.params.id)
   .then(campus => {
-    return campus.destroy();
+    const students = campus.getStudents();
+    campus.destroy();
+    return students;
+  })
+  .then(students => {
+    Promise.map(students, student => student.destroy());
   })
   .catch(next)
 );

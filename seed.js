@@ -6,6 +6,7 @@ const db = require('./db');
 const Student = require('./db/models/').Student;
 const Campus = require('./db/models/').Campus;
 
+
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -42,6 +43,8 @@ for (let i = 0; i < 25; i++) {
 
 let campuses = initializeCampuses();
 
-campuses.forEach(campus => Campus.create(campus).then(res => console.log('students created and saved')));
-students.forEach(student => Student.create(student).then(res => console.log('campuses created and saved')));
+campuses.forEach(campus => Campus.create(campus).then(res => console.log('campus created and saved')));
+students.forEach(student => Student.create(student).then(res => console.log('student created and saved')));
+
+
 

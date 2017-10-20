@@ -12,9 +12,6 @@ const Student = db.define('student', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  construct: {
-    type: Sequelize.ENUM('AI', 'Mech', 'Flesher')
-  },
   email: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -25,9 +22,6 @@ const Student = db.define('student', {
   getterMethods: {
     fullName: function () {
       return `${this.firstName} ${this.lastName}`;
-    },
-    campusName: function () {
-      return this.getCampus();
     }
   }
 });

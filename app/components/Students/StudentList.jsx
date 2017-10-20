@@ -10,8 +10,8 @@ export default class StudentList extends Component {
       students: [],
       firstNameInput: '',
       lastNameInput: '',
-      constructInput: '',
-      emailInput: ''
+      emailInput: '',
+      campus: null
     };
 
     this.submitUpdate = this.submitUpdate.bind(this);
@@ -26,21 +26,18 @@ export default class StudentList extends Component {
       firstName: this.state.firstNameInput,
       lastName: this.state.lastNameInput,
       email: this.state.emailInput,
-      constructInput: this.state.constructInput,
       campusId: 1
     };
 
     axios.post('/api/students/', newStudent)
       .then(res => res.data)
       .then(createdStudent => {
-        console.log('COMING BACK FROM POST', createdStudent);
         const currentStudents = this.state.students;
         this.setState({
-          students: currentStudents.concat(createdStudent),
+          // students: currentStudents.concat(createdStudent),
           firstNameInput: '',
           lastNameInput: '',
-          constructInput: '',
-          emailInput: ''
+          emailInput: '',
         });
       })
       .then(() => this.props.history.push('/students'));
@@ -62,13 +59,13 @@ export default class StudentList extends Component {
   }
 
   render () {
+    console.log(this.state.students);
     return (
       <div>
         <h4>Add info to register a student:</h4>
         <form className="addForm" onSubmit={this.submitUpdate}>
           <input onChange={this.handleChange} value={this.state.firstNameInput} type="text" name="firstNameInput" placeholder="Enter first name..." />
           <input onChange={this.handleChange} value={this.state.lastNameInput} type="text" name="lastNameInput" placeholder="Enter last name..." />
-          <input onChange={this.handleChange} value={this.state.constructInput} type="text" name="constructInput" placeholder="Enter body construct..." />
           <input onChange={this.handleChange} value={this.state.emailInput} type="text" name="emailInput" placeholder="Enter email..." />
           <input type="submit" value="Submit" /><br />
         </form>

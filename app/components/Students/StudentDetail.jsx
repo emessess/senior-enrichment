@@ -12,7 +12,7 @@ export default class StudentDetail extends Component {
       firstNameInput: '',
       lastNameInput: '',
       emailInput: '',
-      campusInput: 0
+      campusInput: ''
     };
 
     this.pressDelete = this.pressDelete.bind(this);
@@ -77,24 +77,22 @@ export default class StudentDetail extends Component {
     console.log('campus', campus);
     return (
       <div>
-        <h3>{student.fullName}</h3>
-        <h4>{student.email}</h4>
-        <h4>{student.construct}</h4>
-        {console.log(campus)}
-        <h4><NavLink to={`/campuses/${student.campusId}`}>{campus.name}</NavLink></h4>
-        <button onClick={this.pressDelete}>Delete</button>
+        <h4>Name: {student.fullName}</h4>
+        <h4>Email: {student.email}</h4>
+        <h4><NavLink to={`/campuses/${student.campusId}`}>Current Campus: {campus.name}</NavLink></h4>
+        <button onClick={this.pressDelete}>Delete Student</button>
         <div>
           <h3>Enter info to update:</h3>
           <form onSubmit={this.submitUpdate}>
             <input onChange={this.handleChange} value={this.state.firstNameInput} type="text" name="firstNameInput" placeholder="Enter first name..." /><br />
             <input onChange={this.handleChange} value={this.state.lastNameInput} type="text" name="lastNameInput" placeholder="Enter last name..." /><br />
             <input onChange={this.handleChange} value={this.state.emailInput} type="text" name="emailInput" placeholder="Enter email..." /><br />
-            <select name="campusInput" onChange={this.handleChange}>
+            {/* <select name="campusInput" onChange={this.handleChange}>
               <option value="1">Mars</option>
               <option value="2">Luna</option>
               <option value="3">Terra</option>
               <option value="4">Titan</option>
-            </select>
+            </select> */}
             <input type="submit" value="Submit" /><br />
           </form>
         </div>
